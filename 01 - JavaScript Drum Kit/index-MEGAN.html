@@ -58,7 +58,7 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  window.addEventListener('keypress', async (event) => {
+  window.addEventListener('keydown', async (event) => {
     // figure out key code of pressed key
     const characterPressed = event.key.toUpperCase()
     const keyCodePressed = characterPressed.charCodeAt(0)
@@ -73,6 +73,7 @@
     // play sound
     const audioForKey = document.querySelector(`audio[data-key="${keyCodePressed}"]`)
     if (!audioForKey) return
+    audioForKey.currentTime = 0 // rewind to start of clip
     audioForKey.play()
 
   })
