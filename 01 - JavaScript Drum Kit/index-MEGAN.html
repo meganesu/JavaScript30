@@ -65,13 +65,15 @@
 
     // apply class
     const divForKey = document.querySelector(`div[data-key="${keyCodePressed}"]`)
-    divForKey && divForKey.classList.add('playing')
+    if (!divForKey) return
+    divForKey.classList.add('playing')
     // remove class
     setTimeout(divForKey => divForKey && divForKey.classList.remove('playing'), 70, divForKey)
 
     // play sound
     const audioForKey = document.querySelector(`audio[data-key="${keyCodePressed}"]`)
-    audioForKey && audioForKey.play()
+    if (!audioForKey) return
+    audioForKey.play()
 
   })
 
