@@ -67,15 +67,20 @@
     const divForKey = document.querySelector(`div[data-key="${keyCodePressed}"]`)
     if (!divForKey) return
     divForKey.classList.add('playing')
-    // remove class
-    setTimeout(divForKey => divForKey && divForKey.classList.remove('playing'), 70, divForKey)
 
     // play sound
     const audioForKey = document.querySelector(`audio[data-key="${keyCodePressed}"]`)
     if (!audioForKey) return
     audioForKey.currentTime = 0 // rewind to start of clip
     audioForKey.play()
+  })
 
+  const keys = document.querySelectorAll('div[data-key]')
+  keys.forEach(key => {
+    key.addEventListener('transitionend', e => {
+      if (e.propertyName != 'transform') return
+      key.classList.remove('playing')
+    })
   })
 
 </script>
